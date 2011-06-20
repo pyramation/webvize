@@ -1,9 +1,17 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from cms.models import *
 
 def create(request):
-    form = PageForm()
+    if request.method == 'POST':
+        form = PageForm(request.POST)
+        if form.is_valid():
+            page = form.save()
+            page.owner = request.user
+            page.save()
+            return redirect('/pages/%d/' % page.id)
+    else:
+        form = PageForm()
     action = '/pages/create/'
     submit = 'Add Page'
     return render_to_response('pages/create.html', {'form':form, 'action':action, 'submit':submit}, context_instance = RequestContext(request))
@@ -11,8 +19,10 @@ def create(request):
 def edit(request):
     return render_to_response('pages/edit.html', context_instance = RequestContext(request))
 
-def show(request):
-    return render_to_response('pages/show.html', context_instance = RequestContext(request))
+def show(request, page_id):
+    page = Page.objects.get(pk=page_id)
+    return render_to_response('pages/show.html', {'page':page}, context_instance = RequestContext(request))
 
 def index(request):
-    return render_to_response('pages/index.html', context_instance = RequestContext(request))
+    pages = Page.objects.all()
+    return render_to_response('pages/index.html', {'pages':pages}, context_instance = RequestContext(request))
