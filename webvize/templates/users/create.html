@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>User Profile</h1>
+
+<hr>
+<br>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="/benchrank/users/create/" method="POST" enctype="multipart/form-data"> 
+    <div class="fieldWrapper"> 
+        <label for="id_picture">Picture</label>: <input type="file" name="picture" id="id_picture" /> 
+        <hr>
+        <label for="id_first_name">First</label>: <input type="input" class="form" name="first_name" id="id_first_name" value="{{user.first_name}}"/> 
+        <hr>
+        <label for="id_last_name">Last</label>: <input type="input" class="form" name="last_name" id="id_last_name" value="{{user.last_name}}"/> 
+    </div> 
+
+    <br> 
+
+    <p><input type="submit" value="Update profile!" /></p> 
+</form> 
+
+
+{% endblock %}

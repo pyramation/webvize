@@ -1,0 +1,46 @@
+<style>
+
+    #login {
+        margin: 0;
+        text-align: center;
+    }
+
+    #login input, #login textarea {
+        padding: 5px;
+        width: 450px;
+        font-size: 1.3em;
+        margin: 0px 0px 10px 0px;
+        border: 2px solid #CCC;
+    }
+
+    #login input.submit {
+        width: 465px;
+        margin-left: 115px;
+    }
+
+    .errorlist {
+        color: red;
+    }
+
+    label {
+        float: left;
+        text-align: right;
+        margin-right: 15px;
+        width: 100px;
+        padding-top: 5px;
+        font-size: 1.4em;
+    }
+
+</style>
+
+<form  name="login" id="login" action="/signin/" method="POST"> 
+    {% csrf_token %}
+    <fieldset class="form"> 
+        <p class="form"><label for="username">email/username</label><input type="text" size="20" name="username" value=""></p> 
+        <p class="form"><label for="password">password</label><input type="password" size="20" name="password" value=""></p> 
+        <p class="submit"><input class="submit" type="submit" name="Submit" value="Go!"></p> 
+    </fieldset> 
+</form> 
+
+
+        Not a member? <a href="/signup/" style="color: blue;">Sign Up</a>

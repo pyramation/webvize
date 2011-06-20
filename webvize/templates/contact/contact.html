@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+
+    #contact {
+        margin: 0;
+        text-align: center;
+    }
+
+    #contact input, #contact textarea {
+        padding: 5px;
+        width: 450px;
+        font-size: 1.3em;
+        margin: 0px 0px 10px 0px;
+        border: 2px solid #CCC;
+        color: #CCC;
+    }
+
+    #contact input.submit {
+        width: 465px;
+        color: #FFF;
+    }
+
+    .errorlist {
+        color: red;
+    }
+</style>
+
+<div style="padding:100px" id="contact">
+
+    <form action="/contact/" method="POST">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="fieldWrapper">
+            {{ form.message.errors }}
+            <textarea id="id_message" rows="10" cols="40" name="message">message...</textarea>
+        </div>
+        <div class="fieldWrapper">
+            {{ form.sender.errors }}
+            <input type="text" name="sender" id="id_sender" value="your email" />
+        </div>
+        <input class="submit" type="submit" value="Send" />
+    </form>
+</div>
+
+<script>
+
+$('#id_message').focus(function(){if($(this).val()=='message...'){$(this).css('color','#000').val('');}});
+$('#id_message').blur(function(){if($(this).val()==''){$(this).css('color','#CCC').val('message...');}});
+$('#id_sender').focus(function(){if($(this).val()=='your email'){$(this).css('color','#000').val('');}});
+$('#id_sender').blur(function(){if($(this).val()==''){$(this).css('color','#CCC').val('your email');}});
+
+</script>
+
+{% endblock %}

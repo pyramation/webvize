@@ -1,3 +1,11 @@
-<a href="/pages/"> pages</a> 
+<a href="/">Home</a>
+{% if user.is_authenticated %}
+<a href="/pages/">Pages</a>
+
+<span style="font-size:8pt;margin-left: 40px;"><a href="/signout/">Sign out</a></span>
+{% else %}
+
+{% endif %}
+
 
 

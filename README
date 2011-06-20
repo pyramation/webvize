@@ -1,0 +1,22 @@
+This is a simple cms built in Django.
+
+
+Make sure to add a contants.py file containing your sensitive information:
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'your_db',                     
+        'USER': 'username',                     
+        'PASSWORD': 'password',                 
+        'HOST': '',                     
+        'PORT': '',                     
+    }
+}
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'noreply@yourdomain.com'
+EMAIL_HOST_PASSWORD = 'password'
+EMAIL_PORT = 587
+

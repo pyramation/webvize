@@ -1,5 +1,7 @@
 # Django settings for webvize project.
 
+from constants import *
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -11,18 +13,6 @@ PREPEND_WWW = True
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'webvize_db',                     
-        'USER': 'blogger',                     
-        'PASSWORD': 'blogger321',                 
-        'HOST': '',                     
-        'PORT': '',                     
-    }
-}
-
-# Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # On Unix systems, a value of None will cause Django to use the same
@@ -94,12 +84,23 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.Loader',
 )
 
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+        'django.contrib.auth.context_processors.auth',
+        #'django.core.context_processors.auth',
+)
+
+FIXTURE_DIRS = (
+            '/var/www/webvize.com/webvize/fixtures/',
+)
+
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'middleware.LoginRequiredMiddleware',
 )
 
 ROOT_URLCONF = 'urls'
@@ -115,7 +116,8 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'cms'
+    'cms',
+    'admin'
 )
 
 # A sample logging configuration. The only tangible logging
@@ -140,3 +142,22 @@ LOGGING = {
         },
     }
 }
+
+AUTH_PROFILE_MODULE = "cms.Profile"
+
+LOGIN_URL = '/login/'
+
+LOGIN_EXEMPT_URLS = (
+   r'^about/$',
+   r'^signup/$',
+   r'^signin/$',
+   r'^login/$',
+   r'^signout/$',
+   r'^terms/$',
+   r'^contact/$',
+) 
+
+AUTHENTICATION_BACKENDS = (
+        'django.contrib.auth.backends.ModelBackend',
+        'backends.EmailOrUsernameModelBackend',
+)

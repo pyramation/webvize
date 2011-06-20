@@ -1,18 +1,61 @@
-{% extends 'base.html' %}
+<style>
 
-{% block content %}
+    #join {
+        margin: 0;
+        text-align: center;
+    }
 
-<h1>Join our site!</h1>
+    #join input, #join textarea {
+        padding: 5px;
+        width: 450px;
+        font-size: 1.3em;
+        margin: 0px 0px 10px 0px;
+        border: 2px solid #CCC;
+    }
 
-<form name="signup" id="signup" action="/users/signup/" method="POST"> 
-    <fieldset class="form"> 
-        <legend>Join</legend> 
-        <p class="form"><label for="email">Email</label><input type="text" size="20" name="email" value=""></p> 
-        <p class="form"><label for="username">Username</label><input type="text" size="20" name="username" value=""></p> 
-        <p class="form"><label for="password">password</label><input type="password" size="20" name="password" value=""></p> 
-        <p class="form"><label for="password2">re-enter password</label><input type="password2" size="20" name="password2" value=""></p> 
-        <p class="submit"><input type="submit" name="Submit" value="Submit"></p> 
-    </fieldset> 
-</form> 
+    #join input.submit {
+        width: 465px;
+    }
 
-{% endblock content %}
+    .errorlist {
+        color: red;
+    }
+
+    label {
+        float: left;
+        text-align: right;
+        margin-right: 15px;
+        width: 100px;
+        padding-top: 5px;
+        font-size: 1.4em;
+    }
+</style>
+
+<div id="join">
+
+    <form name="signup" id="signup" action="/signup/" method="POST"> 
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="fieldWrapper">
+            {{ form.email.errors }}
+            <label for="id_subject">Email:</label>
+            {{ form.email }}
+        </div>
+        <div class="fieldWrapper">
+            {{ form.username.errors }}
+            <label for="id_username">Username:</label>
+            {{ form.username }}
+        </div>
+        <div class="fieldWrapper">
+            {{ form.password.errors }}
+            <label for="id_password">Password:</label>
+            {{ form.password }}
+        </div>
+        <div class="fieldWrapper">
+            {{ form.password2.errors }}
+            <label for="id_password2">Re-enter password:</label>
+            {{ form.password2 }}
+        </div>
+        <p><input type="submit" value="Sign Up!" class="submit"/></p>
+    </form>
+</div>

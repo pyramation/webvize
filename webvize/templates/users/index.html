@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %} Users {% endblock %}
+
+{% block content %}
+
+<a href="/accounts/profile/">Edit Profile</a> 
+
+<h1> Users </h1>
+<br>
+
+<hr>
+{% if user_list %}
+    {% for u in user_list %}
+    <div class="user">
+        <span class="userimage"><a href="/benchrank/users/{{ u.id }}/"><img src="{{ u.icon }}"></a></span>
+        <h2><a href="/benchrank/users/{{ u.id }}/">{{ u.name }}</a></h2>
+    </div>
+    <div class="clear"></div>
+    <hr>
+    {% endfor %}
+
+{% else %}
+<p>No users are available.</p>
+{% endif %}
+
+{% endblock content %}
