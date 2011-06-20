@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Join our site!</h1>
+
+<form name="signup" id="signup" action="/users/signup/" method="POST"> 
+    <fieldset class="form"> 
+        <legend>Join</legend> 
+        <p class="form"><label for="email">Email</label><input type="text" size="20" name="email" value=""></p> 
+        <p class="form"><label for="username">Username</label><input type="text" size="20" name="username" value=""></p> 
+        <p class="form"><label for="password">password</label><input type="password" size="20" name="password" value=""></p> 
+        <p class="form"><label for="password2">re-enter password</label><input type="password2" size="20" name="password2" value=""></p> 
+        <p class="submit"><input type="submit" name="Submit" value="Submit"></p> 
+    </fieldset> 
+</form> 
+
+{% endblock content %}

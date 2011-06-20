@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %} Webvize {% endblock %}</title>
+        <link rel="stylesheet" href="/css/application.css" />
+        <script type="text/javascript" src="/js/jquery-1.6.1.min.js"></script>
+        {% block scripts %} {% endblock %}
+    </head>
+    <body>
+
+
+        <div id="headerwrapper">
+            <div class="header">
+                {% include "menu.html" %}
+            </div>
+        </div>
+
+        {% block subheader %} {% endblock subheader %}
+
+        <div id="shadow">
+            <br>
+        </div>
+
+        <div id="content">
+            {% block content %} {% endblock content %}
+        </div>
+
+        <div id="footerwrapper">
+            <div class="footer">
+                {% include "footer-menu.html" %}
+            </div>
+        </div>
+
+    </body>
+</html>
+

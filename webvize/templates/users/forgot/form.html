@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form name="forgot" id="forgot" action="/users/forgot/" method="POST"> 
+    <fieldset class="form"> 
+        <legend>Forgot</legend> 
+        <p class="form"><label for="email">Email</label><input type="text" size="20" name="email" value=""></p> 
+        <p class="submit"><input type="submit" name="Submit" value="Submit"></p> 
+    </fieldset> 
+</form> 
+
+{% endblock content %}

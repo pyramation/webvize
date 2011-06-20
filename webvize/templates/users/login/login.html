@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form name="login" id="login" action="/login/" method="POST"> 
+    <fieldset class="form"> 
+        {% csrf_token %}
+        <legend>Login</legend> 
+        <p class="form"><label for="email">Email</label><input type="text" size="20" name="email" value=""></p> 
+        <p class="form"><label for="username">Username</label><input type="text" size="20" name="username" value=""></p> 
+        <p class="form"><label for="password">password</label><input type="password" size="20" name="password" value=""></p> 
+        <p class="submit"><input type="submit" name="Submit" value="Submit"></p> 
+    </fieldset> 
+</form> 
+
+
+        <a href="/users/forgot/" class="small">Forgot your password?</a> |
+        <a href="/users/signup/" class="small">Sign Up</a>
+
+{% endblock content %}
