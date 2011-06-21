@@ -1,4 +1,5 @@
 logs/error.log
 logs/access.log
 webvize/constants.py
-webvize/constants.pyc
+*.pyc
+*/*.pyc
