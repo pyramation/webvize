@@ -1,1 +1,49 @@
 {% extends 'pages/base.html' %}
+
+
+{% block scripts %}
+
+<script src="/media/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="/media/ace/theme-twilight.js" type="text/javascript" charset="utf-8"></script>
+<script src="/media/ace/theme-idle_fingers.js" type="text/javascript" charset="utf-8"></script>
+<script src="/media/ace/mode-html.js" type="text/javascript" charset="utf-8"></script>
+<script src="/media/ace/keybinding-vim.js" type="text/javascript" charset="utf-8"></script>
+
+
+
+{% endblock %}
+
+{% block content %}
+
+
+
+<style>
+    #editor {
+        width: 600px;
+        height: 500px;
+    }
+</style>
+
+<div id="editor">{{page.content}}</div>
+<script>
+
+    window.onload = function() {
+
+        var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/idle_fingers");
+
+        var HTMLMode = require("ace/mode/html").Mode;
+        editor.getSession().setMode(new HTMLMode());
+
+        //        var vim = require("ace/keyboard/keybinding/vim").Vim;
+        //        editor.setKeyboardHandler( vim );
+
+    };
+
+</script>
+
+<input type="submit" value="submit"/>
+
+
+
+{% endblock %}
