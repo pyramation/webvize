@@ -18,7 +18,8 @@ def create(request):
 
 def edit(request, page_id):
     page = get_object_or_404(Page, pk=page_id)
-    form = PageForm(instance=page)
+    #form = PageForm(instance=page)
+    request.session['page'] = page_id
     return render_to_response('pages/edit.html', {'page':page}, context_instance = RequestContext(request))
 
 def show(request, page_id):

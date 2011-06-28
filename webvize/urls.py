@@ -8,5 +8,6 @@ urlpatterns = patterns('',
         (r'^terms/$', 'admin.views.terms'),
         (r'^contact/$', 'admin.views.contact'),
         (r'^$', 'users.views.login'),
+        (r'^ajax/', include('ajax.urls')),
         (r'', include('cms.urls')),
 )

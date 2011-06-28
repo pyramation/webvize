@@ -117,7 +117,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cms',
-    'admin'
+    'admin',
+    'ajax',
 )
 
 # A sample logging configuration. The only tangible logging
