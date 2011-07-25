@@ -1,5 +1,8 @@
 {% extends 'pages/base.html' %}
 
+{% block submenu %}
+{% include 'pages/edit_menu.html' %} |
+{% endblock %}
 
 {% block scripts %}
 
@@ -9,25 +12,33 @@
 
 {% endblock %}
 
+{% block title %} {{page.name}} {% endblock %}
+
 {% block content %}
 
 
 
 <style>
     #editor {
-        width: 960px;
-        height: 800px;
+        width: 600px;
+        height: 700px;
     }
     #content {
         height: 840px;
     }
 </style>
 
-<form id="page-form" method="POST" action="{% url edit_page page.id %}">
-    {% csrf_token %}
-    <input type="hidden" value="{{page.id}}">
-    <input type="submit" value="submit">
-</form>
+
+<div style="margin:auto 0; text-align: center;">
+    <form id="page-form" method="POST" action="{% url edit_page page.id %}">
+        {% csrf_token %}
+        <input type="hidden" value="{{page.id}}">
+        <input type="image" src="/images/buttons/save.png">
+        <span id="spinner" style="display:none;"> <img src="/images/ajax/spinner.gif"> </span>
+    </form>
+</div>
+
+
 <div id="editor">{{page.content}}</div>
 
 
@@ -44,6 +55,8 @@
 
 
         $('#page-form').submit(function() {
+
+            $('#spinner').fadeIn();
             
             data = {
                 'csrfmiddlewaretoken':$('input[name^=csrf]').val(),
@@ -54,9 +67,14 @@
             $.post(
                 '{% url ajax_edit_page %}',
                 data,
-                function (data) { },
+                function (data) {
+                
+                    $('#spinner').fadeOut();
+                    
+                },
                 'json'
             );
+
 
             return false;
 

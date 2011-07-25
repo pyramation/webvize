@@ -1,8 +1,12 @@
 {% extends 'pages/base.html' %}
 
-{% block content %}
+{% block submenu %}
+{% include 'pages/edit_menu.html' %} |
+{% endblock %}
 
-<h1>{{page.name}}</h1>
+{% block title %} {{page.name}} {% endblock %}
+
+{% block content %}
 
 {{page.content|safe}}
 
